@@ -1,8 +1,9 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProd = nodeEnv === 'production';
+const webpack = require('webpack')
+const path = require('path')
+const resolve = (dir) => path.resolve(__dirname, dir)
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const nodeEnv = process.env.NODE_ENV || 'development'
+const isProd = nodeEnv === 'production'
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -21,13 +22,13 @@ const plugins = [
       }
     }
   })
-];
+]
 
 var config = {
   devtool: isProd ? 'hidden-source-map' : 'source-map',
   context: path.resolve('./src'),
   entry: {
-    app: './index.ts'
+    app: './map.ts'
   },
   output: {
     path: path.resolve('./dist'),
@@ -41,11 +42,12 @@ var config = {
         exclude: [/\/node_modules\//],
         use: ['awesome-typescript-loader', 'source-map-loader']
       },
-        {
-          test: /\.(glsl|vert|frag)$/, loader: "shader-loader"
-        },
+      {
+        test: /\.(glsl|vert|frag)$/,
+        loader: 'shader-loader'
+      },
 
-        !isProd
+      !isProd
         ? {
             test: /\.(js|ts)$/,
             loader: 'istanbul-instrumenter-loader',
@@ -55,12 +57,15 @@ var config = {
             }
           }
         : null,
-      { test: /\.html$/, loader: 'html-loader' },
-      { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
+      {test: /\.html$/, loader: 'html-loader'},
+      {test: /\.css$/, loaders: ['style-loader', 'css-loader']}
     ].filter(Boolean)
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    alias: {
+      '@': resolve('src')
+    }
   },
   plugins: plugins,
   devServer: {
@@ -70,6 +75,6 @@ var config = {
     port: 3000,
     hot: true
   }
-};
+}
 
-module.exports = config;
+module.exports = config

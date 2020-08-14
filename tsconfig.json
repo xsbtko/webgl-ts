@@ -7,10 +7,14 @@
     "experimentalDecorators": true,
     "outDir": "dist",
     "lib": ["esnext", "dom"],
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "removeComments": true,
-    "typeRoots": ["node_modules/@types", "./src/types"]
+    "typeRoots": ["node_modules/@types", "./src/types"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "watch": true
   },
   "exclude": ["node_modules", "dist"]
 }

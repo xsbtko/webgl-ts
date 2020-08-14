@@ -1,5 +1,5 @@
-
 precision mediump float;
+
 varying vec4 v_position;
 varying vec2 v_texCoord;
 varying vec3 v_normal;
@@ -32,6 +32,5 @@ void main() {
   u_lightColor * (diffuseColor * litR.y + diffuseColor * u_ambient +
                 u_specular * litR.z * u_specularFactor)).rgb,
       diffuseColor.a);
-  gl_FragColor = outColor;
+  gl_FragColor = vec4(a_normal,0.5)*0.5+0.5;
 }
-  

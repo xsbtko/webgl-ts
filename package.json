@@ -41,7 +41,11 @@
   },
   "version": "0.0.1",
   "dependencies": {
+    "@mapbox/geo-viewport": "^0.4.0",
+    "@mapbox/geojson-coords": "0.0.0",
+    "@mapbox/geojson-extent": "^0.3.2",
     "chroma-js": "^1.4.0",
-    "twgl.js": "^4.5.2"
+    "twgl.js": "^4.5.2",
+    "viewport-mercator-project": "^7.0.1"
   }
 }
