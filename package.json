@@ -44,7 +44,9 @@
     "@mapbox/geo-viewport": "^0.4.0",
     "@mapbox/geojson-coords": "0.0.0",
     "@mapbox/geojson-extent": "^0.3.2",
+    "@turf/turf": "^5.1.6",
     "chroma-js": "^1.4.0",
+    "earcut": "^2.2.2",
     "twgl.js": "^4.5.2",
     "viewport-mercator-project": "^7.0.1"
   }

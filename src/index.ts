@@ -1,12 +1,12 @@
 import * as chroma from 'chroma-js'
 import * as twgl from 'twgl.js'
-import {m4, Mat4} from 'twgl.js'
+import { m4, Mat4 } from 'twgl.js'
 import basic from './shader/basic/basic'
 
 window.oncontextmenu = function () {
   return
 }
-twgl.setDefaults({attribPrefix: 'a_'})
+twgl.setDefaults({ attribPrefix: 'a_' })
 const canvas = <HTMLCanvasElement>document.getElementById('canvas')
 const gl = <WebGL2RenderingContext>canvas.getContext('webgl2')
 const programInfo = twgl.createProgramInfo(gl, [basic.vs, basic.fs])
@@ -160,8 +160,94 @@ const arrays = {
     0,
     -1
   ],
-  texcoord: [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
-  indices: [0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23]
+  texcoord: [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1
+  ],
+  indices: [
+    0,
+    1,
+    2,
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    16,
+    18,
+    19,
+    20,
+    21,
+    22,
+    20,
+    22,
+    23
+  ]
 }
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays)
 
@@ -204,7 +290,12 @@ function render(time: number) {
   gl.enable(gl.CULL_FACE)
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-  const projection = m4.perspective((25 * Math.PI) / 180, gl.canvas.width / gl.canvas.height, 0.5, 10)
+  const projection = m4.perspective(
+    (25 * Math.PI) / 180,
+    gl.canvas.width / gl.canvas.height,
+    0.5,
+    10
+  )
   const eye = [1, 4, -6]
   const target = [0, 0, 0]
   const up = [0, 1, 0]
@@ -218,7 +309,7 @@ function render(time: number) {
   uniforms.u_world = world
   uniforms.u_worldInverseTranspose = m4.transpose(m4.inverse(world))
   uniforms.u_worldViewProjection = m4.multiply(viewProjection, world)
-   
+
   gl.useProgram(programInfo.program)
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo)
   twgl.setUniforms(programInfo, uniforms)
